@@ -3,6 +3,7 @@ package org.example.projectnps;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -25,6 +26,9 @@ public class HomescreenController {
 
     @FXML
     private AnchorPane contentPane;
+
+    @FXML
+    private TableView contentTableView;
 
     @FXML
     private Label creditsLabel;

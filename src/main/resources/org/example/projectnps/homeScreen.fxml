@@ -26,6 +26,14 @@
                </children>
             </VBox>
          </children></AnchorPane>
-      <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="625.0" prefWidth="660.0" />
+      <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="625.0" prefWidth="660.0">
+         <children>
+            <TableView fx:id="contentTableView" prefHeight="625.0" prefWidth="660.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
