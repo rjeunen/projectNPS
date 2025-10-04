@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="homeScreenPane" prefHeight="665.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projectnps.HomescreenController">
+   <children>
+      <AnchorPane fx:id="creditsPane" prefHeight="40.0" prefWidth="820.0">
+         <children>
+            <HBox prefHeight="40.0" prefWidth="820.0">
+               <children>
+                  <Label fx:id="titleLabel" prefHeight="40.0" prefWidth="410.0" text="ProjectNPS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+                  <Label fx:id="creditsLabel" prefHeight="40.0" prefWidth="410.0" text="Credits: Created by Robby Jeunen" />
+               </children></HBox>
+         </children></AnchorPane>
+      <AnchorPane fx:id="navigationPane" layoutY="40.0" prefHeight="625.0" prefWidth="160.0">
+         <children>
+            <VBox fx:id="containerVbox" layoutY="222.0" prefHeight="403.0" prefWidth="160.0">
+               <children>
+                  <Button fx:id="importButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Import" />
+                  <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Export" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+      <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="625.0" prefWidth="660.0" />
+   </children>
+</AnchorPane>
