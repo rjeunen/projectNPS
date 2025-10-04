@@ -30,8 +30,14 @@
          <children>
             <TableView fx:id="contentTableView" prefHeight="625.0" prefWidth="660.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="75.0" text="Name" />
+                <TableColumn prefWidth="75.0" text="State" />
+                <TableColumn prefWidth="75.0" text="Processing order" />
+                <TableColumn prefWidth="75.0" text="Policy source" />
+                <TableColumn prefWidth="75.0" text="Condition id" />
+                <TableColumn prefWidth="75.0" text="Condition date" />
+                <TableColumn prefWidth="75.0" text="Profile id" />
+                <TableColumn prefWidth="75.0" text="Profile date" />
               </columns>
             </TableView>
          </children></AnchorPane>
