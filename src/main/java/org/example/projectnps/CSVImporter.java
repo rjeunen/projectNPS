@@ -42,12 +42,12 @@ public class CSVImporter implements IDataImporter{
                 DataRecord dataRecord = new DataRecord(
                         fields.getOrDefault("name", ""),
                         fields.getOrDefault("state", ""),
-                        fields.getOrDefault("processingOrder", ""),
-                        fields.getOrDefault("policyOrder", ""),
-                        fields.getOrDefault("conditionId", ""),
-                        fields.getOrDefault("conditionData", ""),
-                        fields.getOrDefault("profileId", ""),
-                        fields.getOrDefault("profileData", "")
+                        fields.getOrDefault("processingorder", ""),
+                        fields.getOrDefault("policysource", ""),
+                        fields.getOrDefault("conditionid", ""),
+                        fields.getOrDefault("conditiondata", ""),
+                        fields.getOrDefault("profileid", ""),
+                        fields.getOrDefault("profiledata", "")
                 );
 
                 data.add(new DataRecord());
