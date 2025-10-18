@@ -28,7 +28,7 @@ public class HomescreenController {
     private AnchorPane contentPane;
 
     @FXML
-    private TableView contentTableView;
+    private TableView<DataRecord> contentTableView;
 
     @FXML
     private Label creditsLabel;
