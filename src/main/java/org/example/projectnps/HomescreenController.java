@@ -1,17 +1,15 @@
 package org.example.projectnps;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HomescreenController {
@@ -31,6 +29,30 @@ public class HomescreenController {
     private TableView<DataRecord> contentTableView;
 
     @FXML
+    private TableColumn<DataRecord, String> nameColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> stateColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> processingOrderColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> policySourceColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> conditionIdColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> conditionDataColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> profileIdColumn;
+
+    @FXML
+    private TableColumn<DataRecord, String> profileDataColumn;
+
+    @FXML
     private Label creditsLabel;
 
     @FXML
@@ -44,7 +66,20 @@ public class HomescreenController {
 
     @FXML
     private Button exportButton;
+/*
+    @FXML
+    public void initialize(){
 
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+        processingOrderColumn.setCellValueFactory(new PropertyValueFactory<>("processingOrder"));
+        policySourceColumn.setCellValueFactory(new PropertyValueFactory<>("policySource"));
+        conditionIdColumn.setCellValueFactory(new PropertyValueFactory<>("conditionId"));
+        conditionDataColumn.setCellValueFactory(new PropertyValueFactory<>("conditionData"));
+        profileIdColumn.setCellValueFactory(new PropertyValueFactory<>("profileId"));
+        profileDataColumn.setCellValueFactory(new PropertyValueFactory<>("profileData"));
+    }
+*/
     @FXML
     protected void getData(){
         CSVImporter importer = new CSVImporter();
