@@ -18,8 +18,7 @@ public class CSVImporter implements IDataImporter{
         //regex om key-value paren te vinden
         Pattern pattern = Pattern.compile("(\\w+)=\"([^\"]*)\"");
 
-        //hier geef ik het path nog hardcoded mee, kan/moet ik deze niet in een filePath variabele steken?
-        try(BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\robje\\projectNpsCsvData\\nps.csv"))){
+        try(BufferedReader br = new BufferedReader(new FileReader(filePath))){
             String line;
 
             while ((line = br.readLine()) != null){
