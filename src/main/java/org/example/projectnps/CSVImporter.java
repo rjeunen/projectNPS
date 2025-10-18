@@ -51,10 +51,12 @@ public class CSVImporter implements IDataImporter{
                 );
 
                 data.add(new DataRecord());
+
+                //Test om te zien dat mijn data in de objecten zit
+                System.out.println(fields);
             }
 
         } catch (Exception e) {
-            //filePath hieronder moet deze niet ergens meegegeven worden?
             throw new RuntimeException("Fout bij het lezen van het bestand " + filePath, e);
         }
         return data;
