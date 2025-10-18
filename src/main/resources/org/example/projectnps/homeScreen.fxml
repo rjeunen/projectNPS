@@ -30,14 +30,14 @@
          <children>
             <TableView fx:id="contentTableView" prefHeight="625.0" prefWidth="660.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Name" />
-                <TableColumn prefWidth="75.0" text="State" />
-                <TableColumn prefWidth="75.0" text="Processing order" />
-                <TableColumn prefWidth="75.0" text="Policy source" />
-                <TableColumn prefWidth="75.0" text="Condition id" />
-                <TableColumn prefWidth="75.0" text="Condition date" />
-                <TableColumn prefWidth="75.0" text="Profile id" />
-                <TableColumn prefWidth="75.0" text="Profile date" />
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="stateColumn" prefWidth="75.0" text="State" />
+                <TableColumn fx:id="processingOrderColumn" prefWidth="75.0" text="Processing order" />
+                <TableColumn fx:id="policySourceColumn" prefWidth="75.0" text="Policy source" />
+                <TableColumn fx:id="conditionIdColumn" prefWidth="75.0" text="Condition id" />
+                <TableColumn fx:id="conditionDataColumn" prefWidth="75.0" text="Condition date" />
+                <TableColumn fx:id="profileIdColumn" prefWidth="75.0" text="Profile id" />
+                <TableColumn fx:id="profileDataColumn" prefWidth="75.0" text="Profile date" />
               </columns>
             </TableView>
          </children></AnchorPane>
