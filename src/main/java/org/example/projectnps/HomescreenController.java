@@ -47,29 +47,9 @@ public class HomescreenController {
 
     @FXML
     protected void getData(){
-        /*
-         *Vraag na of de CSV wel juist is - geen juiste file?!
-         * Deze method heeft nog werk nodig!
-         * Volgende stap is om de data zichtbaar te krijgen in de view - tableView?
-         * */
+        CSVImporter importer = new CSVImporter();
+        List<DataRecord> importedData = importer.readFromFile("C:\\Users\\robje\\projectNpsCsvData\\nps.csv");
 
-        List<String[]> csvValues = new ArrayList<>();
-        try{
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\robje\\projectNpsCsvData\\nps.csv"));
-
-            String line;
-            while((line = br.readLine()) != null){
-                String[] lineValues = line.split(" "); //regex is spatie
-                csvValues.add(lineValues);
-            }
-            //data van 1 rij naar een array duwen - 1 volledige rij is dus [0] ... - betere oplossing voor?
-            for(int i = 0; i < csvValues.size(); i++){
-                String[] row = csvValues.get(i);
-                System.out.println("Rij " + i + " :" + Arrays.toString(row));
-            }
-        }
-        catch (IOException e){
-            System.out.println("Something went wrong retrieving the CSV file");
-        }
+        contentTableView.getItems().setAll(importedData);
     }
 }
