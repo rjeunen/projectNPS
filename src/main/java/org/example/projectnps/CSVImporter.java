@@ -18,7 +18,7 @@ public class CSVImporter implements IDataImporter{
         //regex om key-value paren te vinden
         Pattern pattern = Pattern.compile("(\\w+)=\"([^\"]*)\"");
 
-
+        //hier geef ik het path nog hardcoded mee, kan/moet ik deze niet in een filePath variabele steken?
         try(BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\robje\\projectNpsCsvData\\nps.csv"))){
             String line;
 
@@ -39,6 +39,7 @@ public class CSVImporter implements IDataImporter{
                 }
 
                 //Nieuw DataRecord aanmaken met de waarden uit de map
+                //Maken gebruik van getOrDefault om geen NullPointerException te krijgen
                 DataRecord dataRecord = new DataRecord(
                         fields.getOrDefault("name", ""),
                         fields.getOrDefault("state", ""),
@@ -54,7 +55,8 @@ public class CSVImporter implements IDataImporter{
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            //filePath hieronder moet deze niet ergens meegegeven worden?
+            throw new RuntimeException("Fout bij het lezen vqn het bestand " + filePath, e);
         }
         return data;
     }
