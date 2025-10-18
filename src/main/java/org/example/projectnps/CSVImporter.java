@@ -56,7 +56,7 @@ public class CSVImporter implements IDataImporter{
 
         } catch (Exception e) {
             //filePath hieronder moet deze niet ergens meegegeven worden?
-            throw new RuntimeException("Fout bij het lezen vqn het bestand " + filePath, e);
+            throw new RuntimeException("Fout bij het lezen van het bestand " + filePath, e);
         }
         return data;
     }
