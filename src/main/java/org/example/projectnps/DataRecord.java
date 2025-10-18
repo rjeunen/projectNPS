@@ -10,6 +10,7 @@ public class DataRecord {
     private String profileId;
     private String profileData;
 
+    //Lege constructor nodig voor JavaFX / FXML Binding
     public DataRecord(){
 
     }
