@@ -123,7 +123,7 @@ public class HomescreenController {
             }
 
             contentTableView.getItems().setAll(data);
-            contentTableView.refresh();
+            contentTableView.refresh(); //soort van forceren om de tabel opnieuw in te lezen = optioneel
 
             //record.setProcessingOrder(event.getNewValue());
         });
