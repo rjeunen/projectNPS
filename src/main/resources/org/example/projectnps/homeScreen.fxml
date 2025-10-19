@@ -29,10 +29,9 @@
       <AnchorPane layoutX="160.0" layoutY="40.0" prefHeight="625.0" prefWidth="660.0">
          <children>
             <TableView fx:id="contentTableView" prefHeight="625.0" prefWidth="660.0">
-              <columns>
+              <columns><TableColumn fx:id="processingOrderColumn" prefWidth="75.0" text="Processing order" />
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="stateColumn" prefWidth="75.0" text="State" />
-                <TableColumn fx:id="processingOrderColumn" prefWidth="75.0" text="Processing order" />
                 <TableColumn fx:id="policySourceColumn" prefWidth="75.0" text="Policy source" />
                 <TableColumn fx:id="conditionIdColumn" prefWidth="75.0" text="Condition id" />
                 <TableColumn fx:id="conditionDataColumn" prefWidth="75.0" text="Condition date" />
