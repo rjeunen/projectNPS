@@ -70,6 +70,11 @@ public class HomescreenController {
 
     @FXML
     public void initialize(){
+        setupColumns();
+        setupProcessingOrderEditing();
+    }
+
+    private void setupColumns(){
         //aangeven dat de gebuiker wijwigingen mag maken
         contentTableView.setEditable(true);
 
@@ -81,9 +86,11 @@ public class HomescreenController {
         conditionDataColumn.setCellValueFactory(new PropertyValueFactory<>("conditionData"));
         profileIdColumn.setCellValueFactory(new PropertyValueFactory<>("profileId"));
         profileDataColumn.setCellValueFactory(new PropertyValueFactory<>("profileData"));
+    }
 
-        //processingOrder kolom effectief bewerkbaar makent
-        //TextFieldTableCell.forTableColumn() betekent, gebrui een textfield bij aanpassingen
+    private  void setupProcessingOrderEditing(){
+        //Aangeven dat processingOrder bewerkbaar is
+        //TextFieldTableCell.forTableColumn() betekent, gebruik een textfield bij aanpassingen
         processingOrderColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         processingOrderColumn.setOnEditCommit(event -> {
             DataRecord record = event.getRowValue();
