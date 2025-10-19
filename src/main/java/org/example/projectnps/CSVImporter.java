@@ -50,10 +50,7 @@ public class CSVImporter implements IDataImporter{
                         fields.getOrDefault("profiledata", "")
                 );
 
-                data.add(new DataRecord());
-
-                //Test om te zien dat mijn data in de objecten zit
-                System.out.println(fields);
+                data.add(dataRecord);
             }
 
         } catch (Exception e) {

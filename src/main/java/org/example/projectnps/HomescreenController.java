@@ -66,10 +66,9 @@ public class HomescreenController {
 
     @FXML
     private Button exportButton;
-/*
+
     @FXML
     public void initialize(){
-
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
         processingOrderColumn.setCellValueFactory(new PropertyValueFactory<>("processingOrder"));
@@ -79,7 +78,7 @@ public class HomescreenController {
         profileIdColumn.setCellValueFactory(new PropertyValueFactory<>("profileId"));
         profileDataColumn.setCellValueFactory(new PropertyValueFactory<>("profileData"));
     }
-*/
+
     @FXML
     protected void getData(){
         CSVImporter importer = new CSVImporter();
