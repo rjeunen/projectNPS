@@ -11,6 +11,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomescreenController {
@@ -75,9 +76,6 @@ public class HomescreenController {
     }
 
     private void setupColumns(){
-        //aangeven dat de gebuiker wijwigingen mag maken
-        contentTableView.setEditable(true);
-
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
         processingOrderColumn.setCellValueFactory(new PropertyValueFactory<>("processingOrder"));
@@ -88,13 +86,46 @@ public class HomescreenController {
         profileDataColumn.setCellValueFactory(new PropertyValueFactory<>("profileData"));
     }
 
-    private  void setupProcessingOrderEditing(){
+    private void setupProcessingOrderEditing(){
+        //aangeven dat de gebuiker wijwigingen mag maken
+        contentTableView.setEditable(true);
+
         //Aangeven dat processingOrder bewerkbaar is
-        //TextFieldTableCell.forTableColumn() betekent, gebruik een textfield bij aanpassingen
-        processingOrderColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        processingOrderColumn.setCellFactory(TextFieldTableCell.forTableColumn()); //aanpassen is in een standaard textveld
+
         processingOrderColumn.setOnEditCommit(event -> {
             DataRecord record = event.getRowValue();
-            record.setProcessingOrder(event.getNewValue());
+            String newValue = event.getNewValue();
+
+            int newIndex;
+            try{
+                newIndex = Integer.parseInt(newValue) - 1; //index is 0 based
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ongeldige waarde: " + newValue);
+                return;
+            }
+
+            List<DataRecord> data = new ArrayList<>(contentTableView.getItems()); //kopie huidige dataSet
+            data.remove(record); //wissen van de aangepaste record
+
+            if(newIndex < 0){
+                newIndex = 0;
+            }
+            if(newIndex > data.size()){
+                newIndex = data.size();
+            }
+
+            data.add(newIndex, record); //data toevoegen op haar nieuze plaats (rij)
+
+            for(int  i = 0; i < data.size(); i++){
+                data.get(i).setProcessingOrder(String.valueOf(i + 1));
+            }
+
+            contentTableView.getItems().setAll(data);
+            contentTableView.refresh();
+
+            //record.setProcessingOrder(event.getNewValue());
         });
     }
 
