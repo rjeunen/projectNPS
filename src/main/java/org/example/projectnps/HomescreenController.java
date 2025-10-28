@@ -136,4 +136,9 @@ public class HomescreenController {
 
         contentTableView.getItems().setAll(importedData);
     }
+
+    @FXML
+    protected void exportData(){
+
+    }
 }

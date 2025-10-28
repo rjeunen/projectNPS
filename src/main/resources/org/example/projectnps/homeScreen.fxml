@@ -22,7 +22,7 @@
             <VBox fx:id="containerVbox" layoutY="222.0" prefHeight="403.0" prefWidth="160.0">
                <children>
                   <Button fx:id="importButton" mnemonicParsing="false" onAction="#getData" prefHeight="25.0" prefWidth="77.0" text="Import" />
-                  <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Export" />
+                  <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportData" prefHeight="25.0" prefWidth="77.0" text="Export" />
                </children>
             </VBox>
          </children></AnchorPane>
