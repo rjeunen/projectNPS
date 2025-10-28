@@ -2,6 +2,7 @@ package org.example.projectnps;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CSVImporter implements IDataImporter{
+public class CSVImporter implements IDataImporter, IDataExporter{
 
     @Override
     public List<DataRecord> readFromFile(String filePath) {
@@ -57,5 +58,33 @@ public class CSVImporter implements IDataImporter{
             throw new RuntimeException("Fout bij het lezen van het bestand " + filePath, e);
         }
         return data;
+    }
+
+    @Override
+    public void writeToFile(String filePath, List<DataRecord> data) {
+        try(FileWriter fileWriter = new FileWriter(filePath)){
+            //schrijf eerst de header - eerste lijn in de CSV
+            fileWriter.write("name, state, processingorder, policysource, conditionid, conditiondata, profileid, profiledata\n");
+
+            //Elk dataRecord schrijven op een aparte rij
+            for(DataRecord record : data){
+                String line = String.join(";",
+                        record.getName(),
+                        record.getState(),
+                        record.getProcessingOrder(),
+                        record.getPolicySource(),
+                        record.getConditionId(),
+                        record.getConditionData(),
+                        record.getProfileId(),
+                        record.getProfileData()
+                        );
+                fileWriter.write(line + System.lineSeparator());
+            }
+            //testing
+            System.out.println("Export voltooid: " + filePath);
+        }
+        catch (Exception e){
+            throw  new RuntimeException("Fout bij het exporteren van de file: " + filePath, e);
+        }
     }
 }
