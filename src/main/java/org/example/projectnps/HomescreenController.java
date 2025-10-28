@@ -10,7 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,6 +141,16 @@ public class HomescreenController {
 
     @FXML
     protected void exportData(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exporteer CSV-bestand");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV-bestanden", "*.csv"));
 
+        File selectedFile = fileChooser.showSaveDialog(contentTableView.getScene().getWindow());
+
+        if(selectedFile != null){
+            CSVImporter exporter = new CSVImporter();
+            List<DataRecord> currentData = new ArrayList<>(contentTableView.getItems());
+            exporter.writeToFile(selectedFile.getAbsolutePath(), currentData);
+        }
     }
 }
