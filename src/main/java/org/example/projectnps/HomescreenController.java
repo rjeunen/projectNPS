@@ -159,19 +159,32 @@ public class HomescreenController {
             return;
         }
 
-        //Geldig bestand = inlezen data
-        CSVImporter csvImporter = new CSVImporter();
-        List<DataRecord> importedData = csvImporter.readFromFile(selectedFile.getAbsolutePath());
+        try{
+            //Geldig bestand = inlezen data
+            CSVImporter csvImporter = new CSVImporter();
+            List<DataRecord> importedData = csvImporter.readFromFile(selectedFile.getAbsolutePath());
 
-        //Toon de data in de TableView
-        contentTableView.getItems().setAll(importedData);
+            //Toon de data in de TableView
+            contentTableView.getItems().setAll(importedData);
 
-        //Succes melding na inladen CSV bestand
-        Alert success = new Alert(Alert.AlertType.INFORMATION);
-        success.setTitle("Import succesvol");
-        success.setHeaderText(null);
-        success.setContentText("Het bestand \"" + selectedFile.getName() + "\" werd succesvol geladen.");
-        success.showAndWait();
+            //Succes melding na inladen CSV bestand
+            showAlert("Import succesvol", "Het bestand \"" + selectedFile.getName() + "\" werd succesvol geladen", Alert.AlertType.INFORMATION);
+        }
+        catch (IllegalArgumentException e){
+            showAlert("CSV-fout", e.getMessage(), Alert.AlertType.ERROR);
+        }
+        catch (Exception e){
+            showAlert("Fout", "Er is iets mis gegaan bij het importeren van het bestand", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML

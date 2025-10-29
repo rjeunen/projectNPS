@@ -19,8 +19,15 @@ public class CSVImporter implements IDataImporter, IDataExporter{
         //regex om key-value paren te vinden
         Pattern pattern = Pattern.compile("(\\w+)=\"([^\"]*)\"");
 
+        //Verwachte kolommen in CSV
+        List<String> requiredColumns = List.of(
+                "name", "state", "processingorder", "policysource", "conditionid", "conditiondata",
+                "profileid", "profiledata"
+        );
+
         try(BufferedReader br = new BufferedReader(new FileReader(filePath))){
             String line;
+            boolean columsValidated = false;
 
             while ((line = br.readLine()) != null){
                 //skip lege lijnen in de CSV
@@ -31,11 +38,29 @@ public class CSVImporter implements IDataImporter, IDataExporter{
                 Matcher matcher = pattern.matcher(line);
                 Map<String, String> fields = new HashMap<>();
 
-                //alle key-value paren opslaan in een lijn
+                //Alle key-value paren opslaan in een lijn
                 while(matcher.find()){
                     String key = matcher.group(1); //name, state, proccessingOrder, ...
                     String value = matcher.group(2); //de values van de keys = waarde tussen "" in de CSV
                     fields.put(key.toLowerCase(), value);
+                }
+
+                //Controle op lijn 1 of de nodige kolommen aanwezig zijn
+                if(!columsValidated){
+                    columsValidated = true;
+
+                    List<String> missingColums = new ArrayList<>();
+                    for(String required : requiredColumns){
+                        if(!fields.containsKey(required)){
+                            missingColums.add(required);
+                        }
+                    }
+
+                    if(!missingColums.isEmpty()){
+                        throw  new IllegalArgumentException(
+                                "De CSV mist de volgende kolommen: " + String.join(", ", missingColums)
+                        );
+                    }
                 }
 
                 //Nieuw DataRecord aanmaken met de waarden uit de map
@@ -54,7 +79,11 @@ public class CSVImporter implements IDataImporter, IDataExporter{
                 data.add(dataRecord);
             }
 
-        } catch (Exception e) {
+        }
+        catch (IllegalArgumentException e){
+            throw  e;
+        }
+        catch (Exception e) {
             throw new RuntimeException("Fout bij het lezen van het bestand " + filePath, e);
         }
         return data;
