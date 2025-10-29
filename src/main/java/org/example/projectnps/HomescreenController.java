@@ -159,6 +159,7 @@ public class HomescreenController {
             return;
         }
 
+        //Alles in try catch om de app niet te doen crashen als er missende kolommen zijn in een bestand
         try{
             //Geldig bestand = inlezen data
             CSVImporter csvImporter = new CSVImporter();
