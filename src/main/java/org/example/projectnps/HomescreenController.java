@@ -2,6 +2,7 @@ package org.example.projectnps;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -11,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
@@ -208,16 +210,25 @@ public class HomescreenController {
 
     @FXML
     protected void addRecord(){
-        //lege DataRecord aanmaken
-        DataRecord newRecord = new DataRecord("", "", "", "", "", "", "", "");
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addRecord.fxml"));
+            DialogPane dialogPane = loader.load();
 
-        //Voeg lege record toe aan de TableView
-        contentTableView.getItems().add(newRecord);
+            AddRecordController dialogController = loader.getController();
 
-        //Selecteer de lege rij (automatisch)
-        contentTableView.getSelectionModel().select(newRecord);
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("Nieuwe record toevoegen");
 
-        //De tabel bewerkbaar maken
-        contentTableView.setEditable(true);
+            dialog.showAndWait().ifPresent(repsonse -> {
+                if(repsonse.getButtonData().isDefaultButton()){
+                    DataRecord newRecord = dialogController.getRecord();
+                    contentTableView.getItems().add(newRecord);
+                }
+            });
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
