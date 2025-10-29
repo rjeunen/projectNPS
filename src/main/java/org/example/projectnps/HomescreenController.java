@@ -225,8 +225,10 @@ public class HomescreenController {
 
             dialog.showAndWait().ifPresent(repsonse -> {
                 if(repsonse.getButtonData().isDefaultButton()){
-                    DataRecord newRecord = dialogController.getRecord();
-                    contentTableView.getItems().add(newRecord);
+                    if(dialogController.validateInput()){
+                        DataRecord newRecord = dialogController.getRecord();
+                        contentTableView.getItems().add(newRecord);
+                    }
                 }
             });
         }
