@@ -165,6 +165,13 @@ public class HomescreenController {
 
         //Toon de data in de TableView
         contentTableView.getItems().setAll(importedData);
+
+        //Succes melding na inladen CSV bestand
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        success.setTitle("Import succesvol");
+        success.setHeaderText(null);
+        success.setContentText("Het bestand \"" + selectedFile.getName() + "\" werd succesvol geladen.");
+        success.showAndWait();
     }
 
     @FXML
