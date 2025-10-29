@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.projectnps.AddRecordController">
+    <content>
+        <VBox spacing="10">
+            <TextField fx:id="nameField" promptText="Name" />
+            <TextField fx:id="stateField" promptText="State" />
+            <TextField fx:id="processingOrderField" promptText="Processing Order" />
+            <TextField fx:id="policySourceField" promptText="Policy Source" />
+            <TextField fx:id="conditionIdField" promptText="Condition ID" />
+            <TextField fx:id="conditionDataField" promptText="Condition Data" />
+            <TextField fx:id="profileIdField" promptText="Profile ID" />
+            <TextField fx:id="profileDataField" promptText="Profile Data" />
+        </VBox>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:id="saveButton" text="Opslaan" buttonData="OK_DONE" />
+        <ButtonType fx:id="cancelButton" text="Annuleer" buttonData="CANCEL_CLOSE" />
+    </buttonTypes>
+</DialogPane>
