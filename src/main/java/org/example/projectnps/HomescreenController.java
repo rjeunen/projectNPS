@@ -20,60 +20,44 @@ import java.util.List;
 public class HomescreenController {
     @FXML
     private AnchorPane homeScreenPane;
-
     @FXML
     private AnchorPane creditsPane;
-
     @FXML
     private AnchorPane navigationPane;
-
     @FXML
     private AnchorPane contentPane;
-
     @FXML
     private TableView<DataRecord> contentTableView;
-
     @FXML
     private TableColumn<DataRecord, String> nameColumn;
-
     @FXML
     private TableColumn<DataRecord, String> stateColumn;
-
     @FXML
     private TableColumn<DataRecord, String> processingOrderColumn;
-
     @FXML
     private TableColumn<DataRecord, String> policySourceColumn;
-
     @FXML
     private TableColumn<DataRecord, String> conditionIdColumn;
-
     @FXML
     private TableColumn<DataRecord, String> conditionDataColumn;
-
     @FXML
     private TableColumn<DataRecord, String> profileIdColumn;
-
     @FXML
     private TableColumn<DataRecord, String> profileDataColumn;
-
     @FXML
     private Label creditsLabel;
-
     @FXML
     private Label titleLabel;
-
     @FXML
     private VBox containerVbox;
-
     @FXML
     private Button importButton;
-
     @FXML
     private Button exportButton;
-
     @FXML
     private Button addRecordButton;
+    @FXML
+    private Button deleteRecordButton;
 
     @FXML
     public void initialize(){
@@ -235,5 +219,10 @@ public class HomescreenController {
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void deleteRecord(){
+
     }
 }
