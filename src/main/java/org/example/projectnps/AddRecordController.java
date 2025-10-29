@@ -21,6 +21,12 @@ public class AddRecordController {
     @FXML
     private TextField profileDataField;
 
+    // het automatisch invullen van het veld processingOrder
+    public void setNextProcessingOrder(int nextOrder) {
+        processingOrderField.setText(String.valueOf(nextOrder));
+        processingOrderField.setDisable(true); // niet bewerkbaar maken
+    }
+
     public DataRecord getRecord() {
         return new DataRecord(
                 nameField.getText(),

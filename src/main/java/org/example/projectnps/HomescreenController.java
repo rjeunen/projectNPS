@@ -216,6 +216,9 @@ public class HomescreenController {
 
             AddRecordController dialogController = loader.getController();
 
+            int nextOrder = contentTableView.getItems().size() + 1;
+            dialogController.setNextProcessingOrder(nextOrder);
+
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("Nieuwe record toevoegen");
