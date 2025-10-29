@@ -169,6 +169,7 @@ public class HomescreenController {
         }
     }
 
+    //helper functie om alerts te tonen
     private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -223,6 +224,28 @@ public class HomescreenController {
 
     @FXML
     protected void deleteRecord(){
+        DataRecord selectedRecord = contentTableView.getSelectionModel().getSelectedItem();
 
+        if(selectedRecord == null){
+            showAlert("Geen selectie", "Selecteer eerst een record om te verwijderen", Alert.AlertType.WARNING);
+            return;
+        }
+
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Bevestiging verwijdering");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Weet je zeker dat je het record wilt verwijderen?");
+
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if(response == ButtonType.OK){
+                contentTableView.getItems().remove(selectedRecord);
+
+                //herberekenen van de processing order na verwijderen record
+                for(int i = 0; i < contentTableView.getItems().size(); i++){
+                    contentTableView.getItems().get(i).setProcessingOrder(String.valueOf(i + 1));
+                }
+                contentTableView.refresh();
+            }
+        });
     }
 }
