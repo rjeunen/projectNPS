@@ -2,17 +2,16 @@ package org.example.projectnps;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,9 +132,38 @@ public class HomescreenController {
 
     @FXML
     protected void getData(){
-        CSVImporter importer = new CSVImporter();
-        List<DataRecord> importedData = importer.readFromFile("C:\\Users\\robje\\projectNpsCsvData\\nps.csv");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecteer een CSV bestand om te importeren");
 
+        //enkel CSV bestanden zijn zichtbaar
+        FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV bestanden (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(csvFilter);
+
+        //Toon venster en laat gebruiker bestand kiezen
+        Stage stage = (Stage) contentTableView.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        //Controle of er een bestand gekozen is
+        if(selectedFile == null){
+            System.out.println("Geen bestaand geselecteerd");
+            return;
+        }
+
+        //Controle op CSV
+        if(!selectedFile.getName().toLowerCase().endsWith(".csv")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ongeldig bestand");
+            alert.setHeaderText(null);
+            alert.setContentText("Het gekozen bestand is geen CSV bestand. Selecteer een CSV bestand");
+            alert.showAndWait();
+            return;
+        }
+
+        //Geldig bestand = inlezen data
+        CSVImporter csvImporter = new CSVImporter();
+        List<DataRecord> importedData = csvImporter.readFromFile(selectedFile.getAbsolutePath());
+
+        //Toon de data in de TableView
         contentTableView.getItems().setAll(importedData);
     }
 
