@@ -71,6 +71,9 @@ public class HomescreenController {
     private Button exportButton;
 
     @FXML
+    private Button addRecordButton;
+
+    @FXML
     public void initialize(){
         setupColumns();
         setupProcessingOrderEditing();
