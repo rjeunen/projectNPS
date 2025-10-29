@@ -202,4 +202,9 @@ public class HomescreenController {
             exporter.writeToFile(selectedFile.getAbsolutePath(), currentData);
         }
     }
+
+    @FXML
+    protected void addRecord(){
+
+    }
 }
