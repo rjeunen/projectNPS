@@ -208,6 +208,16 @@ public class HomescreenController {
 
     @FXML
     protected void addRecord(){
+        //lege DataRecord aanmaken
+        DataRecord newRecord = new DataRecord("", "", "", "", "", "", "", "");
 
+        //Voeg lege record toe aan de TableView
+        contentTableView.getItems().add(newRecord);
+
+        //Selecteer de lege rij (automatisch)
+        contentTableView.getSelectionModel().select(newRecord);
+
+        //De tabel bewerkbaar maken
+        contentTableView.setEditable(true);
     }
 }
