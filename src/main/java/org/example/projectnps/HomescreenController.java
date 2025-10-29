@@ -58,6 +58,8 @@ public class HomescreenController {
     private Button addRecordButton;
     @FXML
     private Button deleteRecordButton;
+    @FXML
+    private Button helpButton;
 
     @FXML
     public void initialize(){
