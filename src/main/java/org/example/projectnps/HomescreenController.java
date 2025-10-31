@@ -239,6 +239,9 @@ public class HomescreenController {
             CSVImporter exporter = new CSVImporter();
             List<DataRecord> currentData = new ArrayList<>(contentTableView.getItems());
             exporter.writeToFile(selectedFile.getAbsolutePath(), currentData);
+
+            //Succes melding na inladen CSV bestand
+            showAlert("Export succesvol", "Het bestand \"" + selectedFile.getName() + "\" werd succesvol geexporteerd", Alert.AlertType.INFORMATION);
         }
     }
 

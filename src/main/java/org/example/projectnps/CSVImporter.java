@@ -109,8 +109,6 @@ public class CSVImporter implements IDataImporter, IDataExporter{
                         );
                 fileWriter.write(line + System.lineSeparator());
             }
-            //testing
-            System.out.println("Export voltooid: " + filePath);
         }
         catch (Exception e){
             throw  new RuntimeException("Fout bij het exporteren van de file: " + filePath, e);
