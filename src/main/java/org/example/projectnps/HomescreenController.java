@@ -27,6 +27,8 @@ public class HomescreenController {
     @FXML
     private AnchorPane contentPane;
     @FXML
+    private AnchorPane helpPane;
+    @FXML
     private TableView<DataRecord> contentTableView;
     @FXML
     private TableColumn<DataRecord, String> nameColumn;
@@ -60,6 +62,8 @@ public class HomescreenController {
     private Button deleteRecordButton;
     @FXML
     private Button helpButton;
+    @FXML
+    private Button closeHelpButton;
 
     @FXML
     public void initialize(){
@@ -249,5 +253,17 @@ public class HomescreenController {
                 contentTableView.refresh();
             }
         });
+    }
+
+    @FXML
+    private void openHelpButton(){
+        helpPane.setVisible(true);
+        closeHelpButton.setVisible(true);
+    }
+
+    @FXML
+    private void closeHelp(){
+        helpPane.setVisible(false);
+        closeHelpButton.setVisible(false);
     }
 }
