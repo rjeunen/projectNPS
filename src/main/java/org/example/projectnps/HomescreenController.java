@@ -69,6 +69,7 @@ public class HomescreenController {
     public void initialize(){
         setupColumns();
         setupProcessingOrderEditing();
+        setupEditableColumns();
     }
 
     private void setupColumns(){
@@ -122,6 +123,52 @@ public class HomescreenController {
             contentTableView.refresh(); //soort van forceren om de tabel opnieuw in te lezen = optioneel
 
             //record.setProcessingOrder(event.getNewValue());
+        });
+    }
+
+    private void setupEditableColumns(){
+        contentTableView.setEditable(true);
+
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameColumn.setOnEditCommit(event ->{
+            DataRecord record = event.getRowValue();
+            record.setName(event.getNewValue());
+        });
+
+        stateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        stateColumn.setOnEditCommit(event ->{
+            DataRecord record = event.getRowValue();
+            String newValue = event.getNewValue().trim();
+            if (newValue.equals("enabled") || newValue.equals("disabled")) {
+                record.setState(newValue);
+            }
+            else {
+                showAlert("Ongeldige invoer",
+                        "De waarde van state moet enabled of disabled zijn",
+                        Alert.AlertType.WARNING);
+                contentTableView.refresh();
+            }
+        });
+
+        conditionDataColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        conditionDataColumn.setOnEditCommit(event ->{
+            DataRecord record = event.getRowValue();
+            record.setConditionData(event.getNewValue());
+        });
+
+        profileDataColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        profileDataColumn.setOnEditCommit(event ->{
+            DataRecord record = event.getRowValue();
+            String newValue = event.getNewValue().trim().toUpperCase();
+            if(newValue.equals("TRUE") || newValue.equals("FALSE")){
+                record.setProfileData(newValue);
+            }
+            else{
+                showAlert("Ongeldige invoer",
+                        "De waarde van profile data moet true of false zijn",
+                        Alert.AlertType.WARNING);
+                contentTableView.refresh();
+            }
         });
     }
 
