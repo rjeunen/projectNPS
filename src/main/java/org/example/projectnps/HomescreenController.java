@@ -68,7 +68,6 @@ public class HomescreenController {
     @FXML
     public void initialize(){
         setupColumns();
-        setupProcessingOrderEditing();
         setupEditableColumns();
     }
 
@@ -83,8 +82,7 @@ public class HomescreenController {
         profileDataColumn.setCellValueFactory(new PropertyValueFactory<>("profileData"));
     }
 
-    private void setupProcessingOrderEditing(){
-        //aangeven dat de gebuiker wijwigingen mag maken
+    private void setupEditableColumns(){
         contentTableView.setEditable(true);
 
         //Aangeven dat processingOrder bewerkbaar is
@@ -121,20 +119,16 @@ public class HomescreenController {
 
             contentTableView.getItems().setAll(data);
             contentTableView.refresh(); //soort van forceren om de tabel opnieuw in te lezen = optioneel
-
-            //record.setProcessingOrder(event.getNewValue());
         });
-    }
 
-    private void setupEditableColumns(){
-        contentTableView.setEditable(true);
-
+        //name column
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setOnEditCommit(event ->{
             DataRecord record = event.getRowValue();
             record.setName(event.getNewValue());
         });
 
+        //statecolumn
         stateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         stateColumn.setOnEditCommit(event ->{
             DataRecord record = event.getRowValue();
@@ -144,18 +138,20 @@ public class HomescreenController {
             }
             else {
                 showAlert("Ongeldige invoer",
-                        "De waarde van state moet enabled of disabled zijn",
+                        "De waarde van state moet 'enabled' of 'disabled' zijn",
                         Alert.AlertType.WARNING);
                 contentTableView.refresh();
             }
         });
 
+        //conditionDataColumn
         conditionDataColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         conditionDataColumn.setOnEditCommit(event ->{
             DataRecord record = event.getRowValue();
             record.setConditionData(event.getNewValue());
         });
 
+        //profileDataColumn
         profileDataColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         profileDataColumn.setOnEditCommit(event ->{
             DataRecord record = event.getRowValue();
@@ -165,7 +161,7 @@ public class HomescreenController {
             }
             else{
                 showAlert("Ongeldige invoer",
-                        "De waarde van profile data moet true of false zijn",
+                        "De waarde van profile data moet 'true' of 'false' zijn",
                         Alert.AlertType.WARNING);
                 contentTableView.refresh();
             }
