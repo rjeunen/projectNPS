@@ -116,4 +116,42 @@ public class CSVImporter implements IDataImporter, IDataExporter{
             throw  new RuntimeException("Fout bij het exporteren van de file: " + filePath, e);
         }
     }
+
+    /* ============================================================
+   ALTERNATIEVE EXPORTMETHODE – UITGESCHAKELD (COMMENTED OUT)
+   ------------------------------------------------------------
+   Deze methode toont hoe dezelfde data kan worden geëxporteerd
+   in het originele formaat waarin de CSV werd geïmporteerd:
+   nl. met het "add np" prefix en alle velden tussen aanhalingstekens.
+
+   Deze implementatie is niet actief, enkel ter illustratie.
+   ============================================================
+
+// public void writeToFile(String filePath, List<DataRecord> data) {
+//     try (FileWriter fileWriter = new FileWriter(filePath)) {
+//
+//         // Elke record in "add np" formaat schrijven
+//         for (DataRecord record : data) {
+//             String line = String.format(
+//                     "add np name=\"%s\" state=\"%s\" processingorder=\"%s\" " +
+//                     "policysource=\"%s\" conditionid=\"%s\" conditiondata=\"%s\" " +
+//                     "profileid=\"%s\" profiledata=\"%s\"",
+//                     record.getName(),
+//                     record.getState(),
+//                     record.getProcessingOrder(),
+//                     record.getPolicySource(),
+//                     record.getConditionId(),
+//                     record.getConditionData(),
+//                     record.getProfileId(),
+//                     record.getProfileData()
+//             );
+//             fileWriter.write(line + System.lineSeparator());
+//         }
+//
+//         System.out.println("Export voltooid in 'add np' formaat: " + filePath);
+//     } catch (Exception e) {
+//         throw new RuntimeException("Fout bij het exporteren van de file in add np formaat: " + filePath, e);
+//     }
+// }
+*/
 }
