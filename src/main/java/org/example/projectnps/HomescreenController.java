@@ -260,8 +260,8 @@ public class HomescreenController {
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("Nieuwe record toevoegen");
 
-            dialog.showAndWait().ifPresent(repsonse -> {
-                if(repsonse.getButtonData().isDefaultButton()){
+            dialog.showAndWait().ifPresent(response -> {
+                if(response.getButtonData().isDefaultButton()){
                     if(dialogController.validateInput()){
                         DataRecord newRecord = dialogController.getRecord();
                         contentTableView.getItems().add(newRecord);
