@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -69,6 +70,16 @@ public class HomescreenController {
     public void initialize(){
         setupColumns();
         setupEditableColumns();
+
+        // Meerdere selectie toestaan
+        contentTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // Delete via toets
+        contentTableView.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.DELETE) {
+                deleteRecord();
+            }
+        });
     }
 
     private void setupColumns(){
@@ -283,9 +294,9 @@ public class HomescreenController {
 
     @FXML
     protected void deleteRecord(){
-        DataRecord selectedRecord = contentTableView.getSelectionModel().getSelectedItem();
+        var selectedRecords = contentTableView.getSelectionModel().getSelectedItems();
 
-        if(selectedRecord == null){
+        if(selectedRecords == null || selectedRecords.isEmpty()){
             showAlert("Geen selectie", "Selecteer eerst een record om te verwijderen", Alert.AlertType.WARNING);
             return;
         }
@@ -297,7 +308,7 @@ public class HomescreenController {
 
         confirmAlert.showAndWait().ifPresent(response -> {
             if(response == ButtonType.OK){
-                contentTableView.getItems().remove(selectedRecord);
+                contentTableView.getItems().removeAll(selectedRecords);
 
                 //herberekenen van de processing order na verwijderen record
                 for(int i = 0; i < contentTableView.getItems().size(); i++){
