@@ -22,13 +22,13 @@
          <children>
             <VBox fx:id="containerVbox" alignment="TOP_CENTER" spacing="20" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <children>
-                  <Button fx:id="importButton" mnemonicParsing="false" onAction="#getData" prefHeight="25.0" prefWidth="100.0" text="Import" />
-                  <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportData" prefHeight="25.0" prefWidth="100.0" text="Export" />
-                  <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="25.0" prefWidth="100.0" text="Add Record" />
-                  <Button fx:id="deleteRecordButton" mnemonicParsing="false" onAction="#deleteRecord" prefHeight="25.0" prefWidth="100.0" text="Delete Record" />
-                  <Button fx:id="recordUpButton" mnemonicParsing="false" onAction="#recordUp" prefHeight="25.0" prefWidth="100.0" text="Move Record Up" />
-                  <Button fx:id="recordDownButton" mnemonicParsing="false" onAction="#recordDown" prefHeight="25.0" prefWidth="100.0" text="Move Record Down" />
-                  <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpButton" prefHeight="25.0" prefWidth="100.0" text="Help" />
+                  <Button fx:id="importButton" mnemonicParsing="false" onAction="#getData" prefHeight="25.0" prefWidth="125.0" text="Import" />
+                  <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportData" prefHeight="25.0" prefWidth="125.0" text="Export" />
+                  <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="25.0" prefWidth="125.0" text="Add Record" />
+                  <Button fx:id="deleteRecordButton" mnemonicParsing="false" onAction="#deleteRecord" prefHeight="25.0" prefWidth="125.0" text="Delete Record" />
+                  <Button fx:id="recordUpButton" mnemonicParsing="false" onAction="#recordUp" prefHeight="25.0" prefWidth="125.0" text="Move Record Up" />
+                  <Button fx:id="recordDownButton" mnemonicParsing="false" onAction="#recordDown" prefHeight="25.0" prefWidth="125.0" text="Move Record Down" />
+                  <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpButton" prefHeight="25.0" prefWidth="125.0" text="Help" />
                   <Button fx:id="closeHelpButton" onAction="#closeHelp" prefHeight="25.0" prefWidth="100.0" text="Exit help" visible="false" />
                </children>
             </VBox>
