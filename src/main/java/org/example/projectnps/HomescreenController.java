@@ -340,25 +340,61 @@ public class HomescreenController {
 
     @FXML
     private void recordUp(){
-        int selectedIndex = contentTableView.getSelectionModel().getSelectedIndex();
+        List<DataRecord> records = contentTableView.getItems();
+        var selectionModel = contentTableView.getSelectionModel();
+        List<Integer> selectedIndices = new ArrayList<>(selectionModel.getSelectedIndices());
 
-        if(selectedIndex > 0){
-            List<DataRecord> records = contentTableView.getItems();
-            Collections.swap(records, selectedIndex, selectedIndex - 1);
-            recalculateProcessingOrder();
-            contentTableView.getSelectionModel().select(selectedIndex - 1);
+        // Niets geselecteerd? -> melding
+        if (selectedIndices.isEmpty()) {
+            showAlert("Geen selectie", "Selecteer één of meerdere records om te verplaatsen.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Controleer of we niet al bovenaan zitten
+        if (selectedIndices.get(0) == 0) return;
+
+        // Verplaats elk geselecteerd record één positie omhoog
+        for (int index : selectedIndices) {
+            Collections.swap(records, index, index - 1);
+        }
+
+        recalculateProcessingOrder();
+
+        // Selectie opnieuw instellen na verplaatsing
+        selectionModel.clearSelection();
+        for (int index : selectedIndices) {
+            selectionModel.select(index - 1);
         }
     }
 
     @FXML
     private void recordDown(){
-        int selectedIndex = contentTableView.getSelectionModel().getSelectedIndex();
         List<DataRecord> records = contentTableView.getItems();
+        var selectionModel = contentTableView.getSelectionModel();
+        List<Integer> selectedIndices = new ArrayList<>(selectionModel.getSelectedIndices());
 
-        if(selectedIndex >= 0 && selectedIndex < records.size() - 1){
-            Collections.swap(records, selectedIndex, selectedIndex + 1);
-            recalculateProcessingOrder();
-            contentTableView.getSelectionModel().select(selectedIndex + 1);
+        // Niets geselecteerd? -> melding
+        if (selectedIndices.isEmpty()) {
+            showAlert("Geen selectie", "Selecteer één of meerdere records om te verplaatsen.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Controleer of we niet al bovenaan zitten
+        if (selectedIndices.get(0) == 0) return;
+
+
+        // Van onder naar boven itereren, zodat we niet door verschuivingen heen werken
+        for (int i = selectedIndices.size() - 1; i >= 0; i--) {
+            int index = selectedIndices.get(i);
+            Collections.swap(records, index, index + 1);
+        }
+
+        recalculateProcessingOrder();
+
+        // Selectie opnieuw instellen
+        selectionModel.clearSelection();
+        for (int index : selectedIndices) {
+            selectionModel.select(index + 1);
         }
     }
 
