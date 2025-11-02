@@ -65,6 +65,10 @@ public class HomescreenController {
     private Button helpButton;
     @FXML
     private Button closeHelpButton;
+    @FXML
+    private Button recordUpButton;
+    @FXML
+    private Button recordDownButton;
 
     @FXML
     public void initialize(){
@@ -329,5 +333,15 @@ public class HomescreenController {
     private void closeHelp(){
         helpPane.setVisible(false);
         closeHelpButton.setVisible(false);
+    }
+
+    @FXML
+    private void recordUp(){
+
+    }
+
+    @FXML
+    private void recordDown(){
+
     }
 }
