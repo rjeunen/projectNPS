@@ -50,13 +50,17 @@ public class AddRecordController {
         conditionDataField.getText().isEmpty()||
         profileIdField.getText().isEmpty()||
         profileDataField.getText().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Ongeldige invoer");
-            alert.setHeaderText("Niet alle velden zijn ingevuld");
-            alert.setContentText("Gelieve alle velden in te vullen voor u verder gaat");
-            alert.showAndWait();
+            showAlert("Ongeldige invoer", "Gelieve alle velden in te vullen voor u verder gaat");
             return false;
         }
         return true;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
