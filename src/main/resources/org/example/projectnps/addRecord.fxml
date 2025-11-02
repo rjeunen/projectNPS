@@ -19,8 +19,4 @@
             <TextField fx:id="profileDataField" promptText="Profile Data: true / false" />
         </VBox>
     </content>
-    <buttonTypes>
-        <ButtonType fx:id="saveButton" text="Opslaan" buttonData="OK_DONE" />
-        <ButtonType fx:id="cancelButton" text="Annuleer" buttonData="CANCEL_CLOSE" />
-    </buttonTypes>
 </DialogPane>

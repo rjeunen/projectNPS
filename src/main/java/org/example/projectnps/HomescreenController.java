@@ -246,8 +246,8 @@ public class HomescreenController {
     }
 
     @FXML
-    protected void addRecord(){
-        try{
+    protected void addRecord() {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("addRecord.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -260,16 +260,23 @@ public class HomescreenController {
             dialog.setDialogPane(dialogPane);
             dialog.setTitle("Nieuwe record toevoegen");
 
-            dialog.showAndWait().ifPresent(response -> {
-                if(response.getButtonData().isDefaultButton()){
-                    if(dialogController.validateInput()){
-                        DataRecord newRecord = dialogController.getRecord();
-                        contentTableView.getItems().add(newRecord);
-                    }
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.addEventFilter(ActionEvent.ACTION, event -> {
+                if (!dialogController.validateInput()) {
+                    event.consume(); // voorkom sluiten
                 }
             });
-        }
-        catch (IOException e){
+
+            dialog.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    DataRecord newRecord = dialogController.getRecord();
+                    contentTableView.getItems().add(newRecord);
+                }
+            });
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -42,7 +42,7 @@ public class AddRecordController {
     }
 
     public boolean validateInput(){
-        if(!stateField.getText().trim().equals("enabled") && !stateField.getText().equals("disabled")){
+        if(!stateField.getText().trim().equalsIgnoreCase("enabled") && !stateField.getText().equalsIgnoreCase("disabled")){
             showAlert("Ongeldige invoer", "het veld state kan enkel 'enabled' of 'disabled zijn'");
             return false;
         }
