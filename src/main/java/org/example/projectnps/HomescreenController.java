@@ -1,5 +1,6 @@
 package org.example.projectnps;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class HomescreenController {
@@ -337,11 +340,33 @@ public class HomescreenController {
 
     @FXML
     private void recordUp(){
+        int selectedIndex = contentTableView.getSelectionModel().getSelectedIndex();
 
+        if(selectedIndex > 0){
+            List<DataRecord> records = contentTableView.getItems();
+            Collections.swap(records, selectedIndex, selectedIndex - 1);
+            recalculateProcessingOrder();
+            contentTableView.getSelectionModel().select(selectedIndex - 1);
+        }
     }
 
     @FXML
     private void recordDown(){
+        int selectedIndex = contentTableView.getSelectionModel().getSelectedIndex();
+        List<DataRecord> records = contentTableView.getItems();
 
+        if(selectedIndex >= 0 && selectedIndex < records.size() - 1){
+            Collections.swap(records, selectedIndex, selectedIndex + 1);
+            recalculateProcessingOrder();
+            contentTableView.getSelectionModel().select(selectedIndex + 1);
+        }
+    }
+
+    private void recalculateProcessingOrder(){
+        List<DataRecord> records = contentTableView.getItems();
+        for(int i = 0; i < records.size(); i++){
+            records.get(i).setProcessingOrder(String.valueOf(i + 1));
+        }
+        contentTableView.refresh();
     }
 }
