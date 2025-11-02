@@ -379,9 +379,8 @@ public class HomescreenController {
             return;
         }
 
-        // Controleer of we niet al bovenaan zitten
-        if (selectedIndices.get(0) == 0) return;
-
+        // Controleer of we niet al onderaan zitten
+        if (selectedIndices.get(selectedIndices.size() - 1) == records.size() - 1) return;
 
         // Van onder naar boven itereren, zodat we niet door verschuivingen heen werken
         for (int i = selectedIndices.size() - 1; i >= 0; i--) {
